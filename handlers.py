@@ -113,18 +113,39 @@ def answer_callback(call):
         dominant_archetype = user_state.get_dominant_archetype(user_id)
        
         result_text = f"""
-Тест завершен!
+✨ ТЕСТ ЗАВЕРШЁН! ✨
 
-Ваш доминирующий архетип: *{dominant_archetype}*
+✨ Ваш доминирующий архетип: «{dominant_archetype}» ✨
 
-{ARCHETYPES[dominant_archetype]}
+✨ Нужен идеальный образ?
 
-Чтобы пройти тест заново, нажмите /start
+✨ Узнайте, как подчеркнуть вашу силу и уникальность через стиль!
+
+✨ Выберите LookBook в https://t.me/emotionlifestyle с готовыми
+решениями для:
+
+• Романтики ✨
+• Работы ✨
+• Вечеринки ✨
+• И других важных событий!
+
+✨ Прокачайте себя: https://t.me/EmoCompassBot
+
+✨ Видеоэфир — секреты отношений и финансов ✨
+
+✨ Марафон — архетип как суперсила!
+
+✨ Ссылки:
+• Лукбук: https://t.me/emotionlifestyle
+• Видео + марафон: https://t.me/EmoCompassBot
+
+✨ Раскройте свой потенциал на 100% — вы этого достойны! ✨
 """
        
-        bot.edit_message_text(
+        # Удаляем текущее сообщение и отправляем результат
+        bot.delete_message(call.message.chat.id, call.message.message_id)
+        bot.send_message(
             chat_id=call.message.chat.id,
-            message_id=call.message.message_id,
             text=result_text,
             parse_mode='Markdown'
         )
